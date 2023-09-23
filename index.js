@@ -5,6 +5,7 @@ const route = require('./routes/routes')
 const cors = require('cors')
 const app = express()
 require('dotenv').config()
+app.use(cors())
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
@@ -20,7 +21,7 @@ app.use(bodyParser.json())
 //   optionSuccessStatus:200,
 // }
 
-app.use(cors())
+
 
 // initializing port
 let port = process.env.PORT || 3000
@@ -30,7 +31,6 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
   next();
   });
 
@@ -52,7 +52,7 @@ const initServer =
 
         // connecting to the database
         await mongoose.connect(process.env.MONGO_URI)
-    console.log('Connected to Stackruit database.')
+    console.log('Connected to Starmatka database.')
   } catch (error) {
     // exit server on error
     console.error(error);

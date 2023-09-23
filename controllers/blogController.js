@@ -5,7 +5,7 @@ const uploadData =
     async (req, res, next) => {
   try {
     // const {resp, code} = await createBlogApi(req.body.blog)
-    // console.log(code)
+    // console.log(req.body)
     
     await Data.create(req.body)
 
@@ -24,9 +24,7 @@ const uploadData =
 const getData =
     async (req, res, next) => {
   try {
-    console.log(req.body)
    var resp = await Data.find(req.body).exec()
-   console.log(resp)
 
    res.status(200)
    res.json(resp)
