@@ -8,16 +8,14 @@ const uploadData =
     // console.log(code)
     
     await Data.create(req.body)
-    res.setHeader('Content-Type', 'text/html');
-    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+
     res.status(200)
     res.json({
       "created": true
     })
   } catch (error) {
     console.log(error)
-    res.setHeader('Content-Type', 'text/html');
-    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+   
     res.status(401)
     res.json({created: false, error: 'Unable to create blog.'})
   }
@@ -29,14 +27,11 @@ const getData =
     console.log(req.body)
    var resp = await Data.find(req.body).exec()
    console.log(resp)
-   res.setHeader('Content-Type', 'text/html');
-   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+
    res.status(200)
    res.json(resp)
   } catch (error) {
     console.log(error)
-    res.setHeader('Content-Type', 'text/html');
-    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
     res.status(400)
     res.json({deleted: false, error: 'Unable to delete blog.'})
   }
