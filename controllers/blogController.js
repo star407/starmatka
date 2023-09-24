@@ -21,6 +21,26 @@ const uploadData =
   }
 }
 
+const updateData =
+    async (req, res, next) => {
+  try {
+    // const {resp, code} = await createBlogApi(req.body.blog)
+    // console.log(req.body)
+    
+    await Data.updateOne({title: req.body.title}, req.body.updates)
+
+    res.status(200)
+    res.json({
+      "created": true
+    })
+  } catch (error) {
+    console.log(error)
+   
+    res.status(401)
+    res.json({created: false, error: 'Unable to update blog.'})
+  }
+}
+
 const getData =
     async (req, res, next) => {
   try {
@@ -62,5 +82,5 @@ const getData =
 
 
                               module.exports = {
-uploadData, getData
+uploadData, getData, updateData
 }

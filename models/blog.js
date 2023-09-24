@@ -5,19 +5,20 @@ const dataSchema = new schema({
         type: String,
         required: true
     },
-    numbertop: {
-        type: String,
-        default: '**'
+    entrydate: {
+        type: Date,
+        unique: true,
+        required: true
     },
-    numbermiddle: {
-        type: String,
-        default: '**'
+    patti1: {
+        type: [Number]
+
     },
-    numberbottom: {
-        type: String,
-        default: '**'
-    },
-},{timestamps:true, collection: 'data'})
+    patti2: {
+        type: [Number]
+
+    }
+})
 
 const data = mongoose.model('data', dataSchema);
 
