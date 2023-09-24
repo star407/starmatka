@@ -19,6 +19,6 @@ const dataSchema = new mongoose.Schema({
     }
 })
 
-const data = mongoose.model('record', dataSchema);
+const data = mongoose.model('db', dataSchema);
 
 module.exports = data
