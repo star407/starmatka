@@ -1,13 +1,12 @@
 const mongoose = require("mongoose")
-const schema = mongoose.Schema 
-const dataSchema = new schema({
-    title: {
-        type: String,
-        required: true
-    },
+const dataSchema = new mongoose.Schema({
     entrydate: {
         type: Date,
         unique: true,
+        required: true
+    },
+    title: {
+        type: String,
         required: true
     },
     patti1: {
@@ -20,6 +19,6 @@ const dataSchema = new schema({
     }
 })
 
-const data = mongoose.model('data', dataSchema);
+const data = mongoose.model('record', dataSchema);
 
 module.exports = data
