@@ -26,13 +26,19 @@ const updateData =
   try {
     // const {resp, code} = await createBlogApi(req.body.blog)
     // console.log(req.body)
-    
-    await Data.updateOne({title: req.body.title}, req.body.updates)
+    var check = await Data.find({title: req.body.title, entrydate: req.body.entrydate}).exec()
+    if(check[0].patti2.length != 0){
+      res.status(401)
+      res.json({created: false, error: 'Unable to update blog.'})
+    } else{
+      await Data.updateOne({title: req.body.title, entrydate: req.body.entrydate}, req.body.updates)
 
-    res.status(200)
-    res.json({
-      "created": true
-    })
+      res.status(200)
+      res.json({
+        "created": true
+      })
+    }
+
   } catch (error) {
     console.log(error)
    
