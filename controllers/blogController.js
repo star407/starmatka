@@ -1,6 +1,7 @@
 
 const { json } = require('body-parser')
 const Data = require('../models/blog')
+const lndata = require('../models/ln')
 const uploadData =
     async (req, res, next) => {
   try {
@@ -8,6 +9,26 @@ const uploadData =
     // console.log(req.body)
     
     await Data.create(req.body)
+
+    res.status(200)
+    res.json({
+      "created": true
+    })
+  } catch (error) {
+    console.log(error)
+   
+    res.status(401)
+    res.json({created: false, error: 'Unable to create blog.'})
+  }
+}
+
+const uploadlnData =
+    async (req, res, next) => {
+  try {
+    // const {resp, code} = await createBlogApi(req.body.blog)
+    // console.log(req.body)
+    
+    await lndata.create(req.body)
 
     res.status(200)
     res.json({
@@ -60,6 +81,19 @@ const getData =
     res.json({deleted: false, error: 'Unable to delete blog.'})
   }
 }
+const getlnData =
+    async (req, res, next) => {
+  try {
+   var resp = await lndata.find(req.body).exec()
+
+   res.status(200)
+   res.json(resp)
+  } catch (error) {
+    console.log(error)
+    res.status(400)
+    res.json({deleted: false, error: 'Unable to delete blog.'})
+  }
+}
 
 // const updateBlog =
 //     async (req, res, next) => {
@@ -88,5 +122,5 @@ const getData =
 
 
                               module.exports = {
-uploadData, getData, updateData
+uploadData, getData, updateData, uploadlnData, getlnData
 }
