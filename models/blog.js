@@ -5,7 +5,7 @@ const dataSchema = new mongoose.Schema({
   patti1: {type: [Number]},
   patti2: {type: [Number]}
 },{ "strict": false })
-dataSchema.index({ "entrydate": 1, "title": 1}, { "unique": true });
+dataSchema.index({ entrydate: 1, title: 1}, { unique: true });
 const data = mongoose.model('patti', dataSchema);
 
 module.exports = data
